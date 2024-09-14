@@ -1,0 +1,95 @@
+{
+  "name": "training-angular-esbuild",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "app-angular",
+  "sourceRoot": "apps/training-angular-esbuild/src",
+  "tags": ["app-angular"],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:application",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/training-angular-esbuild",
+        "index": "apps/training-angular-esbuild/src/index.html",
+        "browser": "apps/training-angular-esbuild/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/training-angular-esbuild/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/training-angular-esbuild/public"
+          }
+        ],
+        "styles": ["apps/training-angular-esbuild/src/styles.scss"],
+        "scripts": [],
+        "server": "apps/training-angular-esbuild/src/main.server.ts",
+        "prerender": true,
+        "ssr": {
+          "entry": "apps/training-angular-esbuild/server.ts"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "training-angular-esbuild:build:production"
+        },
+        "development": {
+          "buildTarget": "training-angular-esbuild:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "training-angular-esbuild:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/training-angular-esbuild/jest.config.ts"
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "training-angular-esbuild:build",
+        "port": 4200,
+        "staticFilePath": "dist/apps/training-angular-esbuild/browser",
+        "spa": true
+      }
+    }
+  }
+}

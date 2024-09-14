@@ -1,0 +1,9 @@
+{
+  "name": "training-angular-esbuild-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/training-angular-esbuild-e2e/src",
+  "implicitDependencies": ["training-angular-esbuild"],
+  "// targets": "to see all targets run: nx show project training-angular-esbuild-e2e --web",
+  "targets": {}
+}
