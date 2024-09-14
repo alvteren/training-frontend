@@ -1,9 +1,9 @@
 /* eslint-disable */
 export default {
-  displayName: 'training-frontend',
+  displayName: 'training-frontend-webpack',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../coverage/apps/training-frontend',
+  coverageDirectory: '../../coverage/apps/training-frontend-webpack',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',
